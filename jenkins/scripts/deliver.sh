@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
 npm run ng build
-npm run ng serve &
-sleep 1
+npm run ng serve -- --host 0.0.0.0 --port 4200 &
+sleep 3
 echo $! > .pidfile
 
 echo 'Now...'
-echo 'Visit http://localhost:4200 to see your Node.js/Angular application in action.'
+echo 'Visit http://kuroneko.ano.ninja:4200.'
