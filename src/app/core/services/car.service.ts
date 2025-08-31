@@ -6,7 +6,7 @@ import { NewCar } from '../models/new-car.model';
 
 @Injectable({ providedIn: 'root' })
 export class CarService {
-  private apiUrl = 'http://kuroneko.ano.ninja:8082/api';
+  private apiUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 
