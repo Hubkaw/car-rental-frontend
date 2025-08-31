@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 npm run ng build
-npm run ng serve -- --host 0.0.0.0 --port 4200 --public kuroneko.ano.ninja:4200 &
+npm run ng serve -- --host 0.0.0.0 --port 4200 &
 sleep 3
 echo $! > .pidfile
 
