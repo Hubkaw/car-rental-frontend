@@ -1,0 +1,11 @@
+<h2>My Rents</h2>
+<div *ngIf="error" class="error">{{ error }}</div>
+<ul>
+  <li *ngFor="let rent of rents$ | async">
+    <b>{{ rent.carBrand }} {{ rent.carModel }}</b>  From: <b> {{ rent.rentStart | date:"dd MMM 'at' hh:mm" }} </b> To: <b>{{ rent.rentEnd | date:"dd MMM 'at' hh:mm" }} </b>  Price: {{ rent.rentPrice.toFixed(2) }} PLN
+    <span [class]="rent.carStatus.toLowerCase()">{{ rent.carStatus }}</span>
+    <button *ngIf="rent.carStatus === 'RENTED' || rent.carStatus === 'OVERDUE'" (click)="returnCar(rent.id)">Return</button>
+    <button *ngIf="rent.carStatus === 'SCHEDULED'" (click)="returnCar(rent.id)">Cancel</button>
+    <button *ngIf="rent.carStatus === 'RETURNED'" disabled>Return</button>
+  </li>
+</ul>

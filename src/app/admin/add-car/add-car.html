@@ -1,0 +1,11 @@
+<h2>Add New Car</h2>
+<form (ngSubmit)="addCar()">
+  <input [(ngModel)]="imageLink" name = "imageLink" placeholder="Image URL" required />
+  <input [(ngModel)]="brand" name = "brand" placeholder="Brand" required />
+  <input [(ngModel)]="model" name = "model" placeholder="Model" required />
+  <input [(ngModel)]="year" name = "year" type="number" placeholder="Year" required min="1900" max="2025" />
+  <input [(ngModel)]="pricePerDay" name = "pricePerDay" type="number" placeholder="Price Per Day" required min="0" />
+  <button type="submit">Add Car</button>
+</form>
+<p *ngIf="error">{{ error }}</p>
+<p *ngIf="success">Car added successfully!</p>

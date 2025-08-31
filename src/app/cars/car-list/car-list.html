@@ -1,0 +1,43 @@
+<h2>Available Cars</h2>
+<div *ngIf="error" class="error">{{ error }}</div>
+<ul>
+  <li *ngFor="let car of cars$ | async">
+    <div class="car-info">
+      <img *ngIf="car.imageLink" [src]="car.imageLink" alt="Car Image" width="100" />
+      <div class="car-details">
+        {{ car.brand }} {{ car.model }} ({{ car.year }}) - {{ car.price.toFixed(2) }} PLN/day
+      </div>
+    </div>
+
+    <span [class]="car.availability.toLowerCase()">{{ car.availability }}</span>
+
+    <button *ngIf="car.availability === 'AVAILABLE'" (click)="openRentModal(car)">Rent</button>
+    <button *ngIf="car.availability !== 'AVAILABLE'" disabled>Rent</button>
+  </li>
+</ul>
+
+<div class="modal" *ngIf="selectedCar">
+  <div class="modal-content">
+    <h3>Rent {{ selectedCar.brand }} {{ selectedCar.model }}</h3>
+    <form (ngSubmit)="confirmRent()">
+      <label>Start Date:</label>
+      <input type="datetime-local" [(ngModel)]="rentStart" name="start" required />
+
+      <label>End Date:</label>
+      <input type="datetime-local" [(ngModel)]="rentEnd" name="end" required />
+
+      <div *ngIf="isAdmin()">
+        <label>Rent for user:</label>
+        <select [(ngModel)]="selectedUserEmail" name="userEmail" required>
+          <option *ngFor="let u of users" [value]="u.email">{{ u.name }}</option>
+        </select>
+      </div>
+
+      <div class="modal-buttons">
+        <button type="submit">Confirm Rent</button>
+        <button type="button" (click)="closeRentModal()">Cancel</button>
+      </div>
+    </form>
+    <div *ngIf="modalError" class="error">{{ modalError }}</div>
+  </div>
+</div>

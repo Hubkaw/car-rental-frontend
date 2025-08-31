@@ -1,0 +1,46 @@
+<h2>Register</h2>
+<form #f="ngForm" (ngSubmit)="register()" novalidate>
+  <input [(ngModel)]="firstName"
+         name="firstName"
+         placeholder="First Name"
+         required
+         #firstNameCtrl="ngModel" />
+  <div *ngIf="firstNameCtrl.invalid && firstNameCtrl.touched" class="error">
+    First name is required
+  </div>
+
+  <input [(ngModel)]="lastName"
+         name="lastName"
+         placeholder="Last Name"
+         required
+         #lastNameCtrl="ngModel" />
+  <div *ngIf="lastNameCtrl.invalid && lastNameCtrl.touched" class="error">
+    Last name is required
+  </div>
+
+  <input [(ngModel)]="email"
+         name="email"
+         placeholder="Email"
+         required
+         email
+         #emailCtrl="ngModel" />
+  <div *ngIf="emailCtrl.invalid && emailCtrl.touched" class="error">
+    Enter a valid email
+  </div>
+
+  <input [(ngModel)]="password"
+         name="password"
+         type="password"
+         placeholder="Password"
+         required
+         pattern="^(?=.*[A-Za-z])(?=.*\d).{6,}$"
+         #passwordCtrl="ngModel" />
+  <div *ngIf="passwordCtrl.invalid && passwordCtrl.touched" class="error">
+    Password must contain at least one letter, one number, and be at least 6 characters long
+  </div>
+
+  <button type="submit" [disabled]="f.invalid">Register</button>
+</form>
+
+<a routerLink="/login">Back to Login</a>
+<p *ngIf="error">{{ error }}</p>
