@@ -6,7 +6,7 @@ import { NewUser } from '../models/new-user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'http://kuroneko.ano.ninja:8082/api';
   private tokenKey = 'jwt_token';
   private isAdminKey = 'is_admin';
 

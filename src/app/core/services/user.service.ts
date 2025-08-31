@@ -5,7 +5,7 @@ import { UserDTO } from '../models/user-dto.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'http://kuroneko.ano.ninja:8082/api';
 
   constructor(private http: HttpClient) {}
 
